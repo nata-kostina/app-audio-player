@@ -14,6 +14,8 @@ Audio
 ================================================*/
 
 const audio = new Audio();
+audio.src = music.find(item => item.id === Number(state.current)).src;
+state.isLoaded = true;
 
 const startAudio = () => {
     if (state.isPlaying) {
@@ -69,12 +71,13 @@ const changeBgImage = () => {
 }
 
 const changePlayerImage = () => {
-        document.querySelector('.player__img').style.background = `url('${imgs.find(item => item.id === Number(state.current)).src}') center center / cover no-repeat`;
+    document.querySelector('.player__img').style.background = `url('${imgs.find(item => item.id === Number(state.current)).src}') center center / cover no-repeat`;
 
-    }
-    /*==============================================
-    Button Next
-    ================================================*/
+}
+
+/*==============================================
+Button Next
+================================================*/
 const btnNext = document.querySelector('.button-next');
 
 const handleBtnNext = () => {
@@ -89,7 +92,6 @@ const handleBtnNext = () => {
         btnPlay.classList.add('pause');
     }
     startAudio();
-
 }
 btnNext.addEventListener('click', handleBtnNext);
 
@@ -135,3 +137,17 @@ setInterval(() => {
     setSongDuration();
     setCurrentTime();
 }, 1000);
+
+const progressBar = document.querySelector('.progress-bar');
+
+const moveProgress = (event) => {
+    const progressBarWidth = progressBar.offsetWidth;
+    const progress = document.querySelector(".progress");
+    let progressWidth = (event.offsetX * 100) / progressBarWidth;
+    progress.style.width = `${progressWidth}%`;
+
+    if (state.isLoaded) {
+        audio.currentTime = (progressWidth * audio.duration) / 100;
+    }
+}
+progressBar.addEventListener("click", moveProgress);
