@@ -1,6 +1,6 @@
 # App "Audio Player"
 
-Link to app: [ttps://nata-kostina.github.io/app-audio-player/](ttps://nata-kostina.github.io/app-audio-player/ "Audio Player")
+Link to app: [https://nata-kostina.github.io/app-audio-player/](https://nata-kostina.github.io/app-audio-player/ "Audio Player")
 ***
 ## Description
 
